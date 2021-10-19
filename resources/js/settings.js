@@ -4,7 +4,7 @@ export default {
   /**
    * @type {String}
    */
-  title: 'Laravue Admin',
+  title: 'AstrogrowShop Reportes',
   theme: variables.theme,
 
   /**

@@ -2,7 +2,7 @@
 /**
  * File Permission.php
  *
- * @author Tuan Duong <bacduong@gmail.com>
+ * @author Reinaldo Tineo <rei.vzl@gmail.com>
  * @package Laravue
  * @version 1.0
  */

@@ -10,26 +10,25 @@
         :text-color="variables.menuText"
         :active-text-color="variables.menuActiveText"
         mode="vertical"
-      >
-        <sidebar-item
-          v-for="route in routes"
-          :key="route.path"
-          :item="route"
-          :base-path="route.path"
-        />
+      ><template>
+        <app-link :to="'/#/dashboard'" style="text-align:center;">
+          <el-menu-item :index="'/#/dashboard'" class="el-menu-item submenu-title-noDropdown"> <i class="fa fa-dashboard" />Panel</el-menu-item>
+        </app-link>
+      </template>
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 
 <script>
+import path from 'path';
+import { isExternal } from '@/utils/validate';
 import { mapGetters } from 'vuex';
-import SidebarItem from './SidebarItem';
 import Logo from './Logo';
 import variables from '@/styles/variables.scss';
 
 export default {
-  components: { SidebarItem, Logo },
+  components: { Logo },
   computed: {
     ...mapGetters(['sidebar', 'permission_routers']),
     routes() {
@@ -43,6 +42,17 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened;
+    },
+    methods: {
+      resolvePath(routePath) {
+        if (this.isExternalLink(routePath)) {
+          return routePath;
+        }
+        return path.resolve(this.basePath, routePath);
+      },
+      isExternalLink(routePath) {
+        return isExternal(routePath);
+      },
     },
   },
 };

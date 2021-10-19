@@ -7,9 +7,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            Páginas generales
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="6576567" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -20,7 +20,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Messages
+            Páginas de productos
           </div>
           <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
         </div>
@@ -32,8 +32,7 @@
           <svg-icon icon-class="money" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">
-            Purchases
+          <div class="card-panel-text">P. sin stock
           </div>
           <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
         </div>
@@ -46,7 +45,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Shoppings
+            Productos
           </div>
           <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
         </div>
@@ -57,14 +56,45 @@
 
 <script>
 import CountTo from 'vue-count-to';
+import { metrics } from '@/api/products';
 
 export default {
   components: {
     CountTo,
   },
+  data(){
+    return {
+      tableKey: 0,
+      data: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        page: 1,
+        limit: 20,
+        importance: undefined,
+        title: undefined,
+        type: undefined,
+        sort: '+id',
+        date_start: undefined,
+        date_end: undefined,
+      },
+    };
+  },
+  created() {
+    this.getData();
+  },
   methods: {
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type);
+    },
+    async getData(){
+      this.listLoading = true;
+      const { data } = await metrics(this.listQuery);
+      this.data = data.data.metrics;
+
+      console.log(this.data);
+      // Just to simulate the time of the request
+      this.listLoading = false;
     },
   },
 };

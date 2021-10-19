@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', 'ProductController@metrics');
+
+Route::get('/products_analytic', 'ProductController@index');
+
 Route::group(['middleware' => 'web'], function () {
     Route::get(env('LARAVUE_PATH'), 'LaravueController@index')->where('any', '.*')->name('laravue');
 });

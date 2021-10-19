@@ -1,12 +1,7 @@
 <template>
   <div class="login">
     <div class="login-container">
-      <div class="login-image">
-        <div class="photo-credit">
-          <h4>Danang - Vietnam</h4>
-          <span>Photo by Kiril Dobrev on Unsplash</span>
-        </div>
-      </div>
+      <div class="login-image" />
       <div class="login-content">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
           <div class="title-wrap">
@@ -16,9 +11,7 @@
               :src="logo"
             >
             <h3 class="title">
-              {{ $t('login.title') }}
-              <lang-select class="set-language" />
-            </h3>
+              {{ $t('login.title') }}</h3>
           </div>
           <el-form-item prop="email">
             <span class="svg-container">
@@ -48,8 +41,8 @@
             </el-button>
           </el-form-item>
           <div class="tips">
-            <span style="margin-right:20px;">Email: admin@laravue.dev</span>
-            <span>Password: laravue</span>
+            <span style="margin-right:20px;">Email: admin@astrogrowshop.cl</span>
+            <span>Password: astrogrowreports</span>
           </div>
         </el-form>
       </div>
@@ -58,15 +51,13 @@
 </template>
 
 <script>
-import LangSelect from '@/components/LangSelect';
 import { validEmail } from '@/utils/validate';
 import { csrf } from '@/api/auth';
 
-const logo = require('@/assets/login/logo.png').default;
+const logo = require('@/assets/login/logo.jpg').default;
 
 export default {
   name: 'Login',
-  components: { LangSelect },
   data() {
     const validateEmail = (rule, value, callback) => {
       if (!validEmail(value)) {
@@ -84,8 +75,8 @@ export default {
     };
     return {
       loginForm: {
-        email: 'admin@laravue.dev',
-        password: 'laravue',
+        email: 'admin@astrogrowshop.cl',
+        password: 'astrogrowreports',
       },
       loginRules: {
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],
@@ -151,8 +142,8 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
-$light_gray:#eee;
+$bg:#fff;
+$light_gray:#444;
 
 /* reset element-ui css */
 .login-container {
@@ -185,12 +176,12 @@ $light_gray:#eee;
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 
-$bg:#2d3a4b;
+$bg:#ffffff;
 $dark_gray:#889aa4;
 $light_gray:rgb(7, 6, 6);
 $bgColor: #054b5d;
 $brown: #B27C66;
-$textColor:#eee;
+$textColor:#333;
 
 .login {
   height: 100%;
@@ -213,7 +204,7 @@ $textColor:#eee;
 
     .logo {
       display: block;
-      width: 80px;
+      width: auto;
       height: 80px;
       margin-bottom: 20px;
     }

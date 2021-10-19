@@ -1,7 +1,7 @@
 {
     "name": "tuandm/laravue",
     "type": "project",
-    "description": "A beautiful dashboard for Laravel built by VueJS",
+    "description": "Sistema de gestión de reportes",
     "keywords": [
         "laravel",
         "laravue",
@@ -12,9 +12,9 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Tuan Duong",
-            "email": "bacduong@gmail.com",
-            "homepage": "https://laravue.dev",
+            "name": "Reinaldo Tineo",
+            "email": "rei.vzl@gmail.com",
+            "homepage": "https://wasllot.com",
             "role": "Developer"
         }
     ],
@@ -22,10 +22,12 @@
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.3",
         "laravel/framework": "^7.0",
         "laravel/sanctum": "^2.1",
         "laravel/tinker": "^2.0",
+        "protechstudio/laravel-prestashop-webservice": "^3.5",
+        "spatie/laravel-analytics": "^3.11",
         "spatie/laravel-permission": "^3.0"
     },
     "require-dev": {

@@ -1,8 +1,8 @@
 {
-  "name": "laravue",
-  "version": "0.13.1",
+  "name": "AstroReports",
+  "version": "0.0.1",
   "description": "A beautiful dashboard for Laravel built by VueJS",
-  "author": "Tuan Duong <bacduong@gmail.com>",
+  "author": "Reinaldo Tineo <rei.vzl@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {

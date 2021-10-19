@@ -34,6 +34,7 @@ mix.webpackConfig(config);
  */
 
 mix
+  .sass('resources/sass/app.scss', 'public/css')
   .js('resources/js/app.js', 'public/js')
   .extract([
     'vue',
