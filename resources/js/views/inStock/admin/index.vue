@@ -72,7 +72,7 @@
     </div>
 
     <template>
-      <h2>Productos sin stock <span v-if="date"> {{ date }}</span></h2>
+      <h2>Productos en stock <span v-if="date"> {{ date }}</span></h2>
     </template>
     <br>
     <el-table
@@ -180,13 +180,13 @@
 </template>
 
 <script>
-import { fetchList, fetchListByDate, fetchProductHistory, paginate, fetchFullListByDate } from '@/api/products';
+import { fetchListInStock, fetchListByDateInStock, fetchProductHistory, paginateInStock, fetchFullListByDate } from '@/api/products';
 import CountTo from 'vue-count-to';
 import waves from '@/directive/waves'; // Waves directive
 import Pagination from '@/components/Pagination'; // Secondary package based on el-pagination
 
 export default {
-  name: 'DashboardAdmin',
+  name: 'DashboardInStock',
   components: { Pagination, CountTo },
   directives: { waves },
   filters: {
@@ -243,7 +243,7 @@ export default {
   methods: {
     async getList() {
       this.listLoading = true;
-      const { data } = await fetchList(this.listQuery);
+      const { data } = await fetchListInStock(this.listQuery);
       this.list = data.items;
       this.total = data.total;
       this.metrics = data.metrics;
@@ -257,7 +257,7 @@ export default {
     },
     async paginate() {
       this.listLoading = true;
-      const { data } = await paginate(JSON.stringify(this.listQuery));
+      const { data } = await paginateInStock(JSON.stringify(this.listQuery));
       this.list = data.list;
       // Just to simulate the time of the request
       this.listLoading = false;
@@ -303,7 +303,7 @@ export default {
       var date_s = this.formatDate(this.listQuery.date_start);
       var date_e = this.formatDate(this.listQuery.date_end);
 
-      const { data } = await fetchListByDate(date_s, date_e);
+      const { data } = await fetchListByDateInStock(date_s, date_e);
 
       this.list = data.items;
       this.total = data.total;
@@ -339,7 +339,7 @@ export default {
       // Just to simulate the time of the request
       this.historyLoading = false;
     },
-    async handleDownload() {
+    handleDownload() {
       this.downloadLoading = true;
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['Vistas', 'Sesiones', 'Url del producto'];
@@ -348,7 +348,7 @@ export default {
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: 'Listado-productos-sin-stock-' + this.listQuery.date_start_string + '_' + this.listQuery.date_end_string,
+          filename: 'Listado-productos-en-stock-' + this.listQuery.date_start_string + '_' + this.listQuery.date_end_string,
         });
         this.downloadLoading = false;
       });

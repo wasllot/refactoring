@@ -78,6 +78,8 @@ export default {
     theme: 'Tema',
     size: 'Tamaño Global',
     profile: 'Perfil',
+    inStock: 'Productos en stock',
+    outOfStock: 'Productos sin stock',
   },
   login: {
     title: 'Ingresar al panel',
@@ -154,6 +156,8 @@ export default {
     history: 'Ver historial',
     date_start: 'Fecha de incio',
     date_end: 'Fecha fin',
+    stock: 'Stock',
+    data: 'Fecha',
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',

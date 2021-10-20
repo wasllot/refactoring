@@ -1,9 +1,16 @@
 <template>
   <div class="navbar">
-
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
-
     <div class="right-menu">
+      <template>
+        <router-link to="/" class="right-menu-item hover-effect">
+          {{ $t('navbar.outOfStock') }}
+        </router-link>
+      </template>
+      <template>
+        <router-link to="/dashboard/in-stock" class="right-menu-item hover-effect">
+          {{ $t('navbar.inStock') }}
+        </router-link>
+      </template>
       <template v-if="device!=='mobile'">
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
       </template>
@@ -36,12 +43,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Breadcrumb from '@/components/Breadcrumb';
 import Screenfull from '@/components/Screenfull';
 
 export default {
   components: {
-    Breadcrumb,
     Screenfull,
   },
   computed: {
@@ -105,6 +110,58 @@ export default {
     }
 
     .right-menu-item {
+      display: inline-block;
+      padding: 0 8px;
+      height: 100%;
+      font-size: 18px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+        transition: background .3s;
+
+        &:hover {
+          background: rgba(0, 0, 0, .025)
+        }
+      }
+    }
+
+    .avatar-container {
+      margin-right: 30px;
+
+      .avatar-wrapper {
+        margin-top: 5px;
+        position: relative;
+
+        .user-avatar {
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          border-radius: 4px;
+        }
+
+        .el-icon-caret-bottom {
+          cursor: pointer;
+          position: absolute;
+          right: -20px;
+          top: 25px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .left-menu {
+    float: le;
+    height: 100%;
+    line-height: 50px;
+
+    &:focus {
+      outline: none;
+    }
+
+    .left-menu-item {
       display: inline-block;
       padding: 0 8px;
       height: 100%;

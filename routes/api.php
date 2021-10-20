@@ -149,33 +149,15 @@ Route::get('articles/{id}/pageviews', function ($id) {
 });
 
 
-
 Route::get('/products', 'ProductController@view');
 Route::get('/products/{date_start}/{date_end}', 'ProductController@view');
+Route::get('/paginate_product/{data}', 'ProductController@paginate');
+Route::get('/products/in_stock', 'ProductController@view_products_in_stock');
+Route::get('/products_full_list/{date_start}/{date_end}/{inStock}', 'ProductController@get_full_list');
+Route::get('/products_in_stock/{date_start}/{date_end}', 'ProductController@view_products_in_stock');
+Route::get('/paginate_product_in_stock/{data}', 'ProductController@paginate_in_stock');
 Route::get('/metrics', 'ProductController@metrics');
-
-Route::get('products/{id}', function ($id) {
-    $product = [
-        'id' => $id,
-        'display_time' => Faker::randomDateTime()->format('Y-m-d H:i:s'),
-        'title' => Faker::randomString(mt_rand(20, 50)),
-        'author' => Faker::randomString(mt_rand(5, 10)),
-        'comment_disabled' => Faker::randomBoolean(),
-        'content' => Faker::randomString(mt_rand(100, 300)),
-        'content_short' => Faker::randomString(mt_rand(30, 50)),
-        'status' => Faker::randomInArray(['deleted', 'published', 'draft']),
-        'forecast' => mt_rand(100, 9999) / 100,
-        'image_uri' => 'https://via.placeholder.com/400x300',
-        'importance' => mt_rand(1, 3),
-        'pageviews' => mt_rand(10000, 999999),
-        'reviewer' => Faker::randomString(mt_rand(5, 10)),
-        'timestamp' => Faker::randomDateTime()->getTimestamp(),
-        'type' => Faker::randomInArray(['US', 'VI', 'JA']),
-
-    ];
-
-    return response()->json(new JsonResponse($article));
-});
+Route::get('products/{url}', 'ProductController@history' );
 
 Route::get('products/{id}/pageviews', function ($id) {
     $pageviews = [

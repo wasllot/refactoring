@@ -1,12 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-/**
- * Layzloading will create many files and slow on compiling, so best not to use lazyloading on devlopment.
- * The syntax is lazyloading, but we convert to proper require() with babel-plugin-syntax-dynamic-import
- * @see https://doc.laravue.dev/guide/advanced/lazy-loading.html
- */
-
 Vue.use(Router);
 
 /* Layout */
@@ -22,11 +16,6 @@ import nestedRoutes from './modules/nested';
 import errorRoutes from './modules/error';
 import excelRoutes from './modules/excel';
 import permissionRoutes from './modules/permission';
-
-/**
- * Sub-menu only appear when children.length>=1
- * @see https://doc.laravue.dev/guide/essentials/router-and-nav.html
- **/
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -88,20 +77,20 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard', noCache: false },
+        meta: { title: 'Productos sin stock', icon: 'dashboard', noCache: false },
       },
     ],
   },
   {
-    path: '/documentation',
+    path: '/dashboard',
     component: Layout,
-    redirect: '/documentation/index',
+    redirect: '/dashboard/in-stock',
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', noCache: true },
+        path: '/dashboard/in-stock',
+        component: () => import('@/views/inStock/index'),
+        name: 'DashboardInStock',
+        meta: { title: 'Productos en stock', icon: 'dashboard', noCache: false },
       },
     ],
   },
@@ -214,16 +203,6 @@ export const asyncRoutes = [
         component: () => import('@/views/i18n'),
         name: 'I18n',
         meta: { title: 'i18n', icon: 'international' },
-      },
-    ],
-  },
-  {
-    path: '/external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/tuandm/laravue',
-        meta: { title: 'externalLink', icon: 'link' },
       },
     ],
   },
